@@ -11,7 +11,7 @@ export default function Header() {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <h1 className="text-xl md:text-2xl font-bold text-[#1A1A1A] dark:text-[#E7E9EA] transition-colors duration-300">
-              💸 Remittance Tracker
+              Impact-Site-Verification: 347affb7-c7dc-49c3-9225-cba330cc770a
             </h1>
           </div>
           
