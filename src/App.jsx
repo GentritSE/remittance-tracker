@@ -38,7 +38,7 @@ function App() {
   const handleCalculate = (amount, fromCountry) => {
     setIsLoading(true)
     
-    // Simulate loading state for better UX
+    // Simulate loading state for better UX (600ms provides perceived performance without feeling sluggish)
     setTimeout(() => {
       const sortedServices = sortServicesByValue(serviceData, amount)
       setResults({
@@ -63,6 +63,9 @@ function App() {
     const bestService = results.services[0]
     const worstService = results.services[results.services.length - 1]
     const savingsAmount = (worstService.fee - bestService.fee).toFixed(2)
+    
+    // Only show savings if there's actually a difference
+    if (parseFloat(savingsAmount) <= 0) return null
     
     return {
       amount: savingsAmount,
@@ -131,7 +134,7 @@ function App() {
             {/* Loading Skeleton */}
             {isLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[1, 2, 3, 4, 5].map(i => (
+                {Array.from({ length: Object.keys(serviceData).length }).map((_, i) => (
                   <div key={i} className="animate-pulse bg-gray-200 dark:bg-gray-800 rounded-xl h-96 transition-colors duration-300" />
                 ))}
               </div>
