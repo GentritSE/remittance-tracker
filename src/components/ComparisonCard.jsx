@@ -1,0 +1,85 @@
+import { useLanguage } from '../hooks/useLanguage'
+import { formatCurrency } from '../utils/calculations'
+import { trackAffiliateLinkClicked } from '../utils/analytics'
+
+export default function ComparisonCard({ service, amount, isBestValue }) {
+  const { t } = useLanguage()
+
+  const handleClick = () => {
+    trackAffiliateLinkClicked(service.name, amount, service.recipientReceives)
+    window.open(service.affiliateLink, '_blank', 'noopener,noreferrer')
+  }
+
+  const formatTransferTime = () => {
+    const { min, max, unit } = service.transferTime
+    if (min === max) {
+      return `${min} ${t('results.' + unit)}`
+    }
+    return `${min}-${max} ${t('results.' + unit)}`
+  }
+
+  return (
+    <article className="bg-[#F8F9FA] dark:bg-[#1C1F26] rounded-xl shadow-md hover:shadow-lg border border-[#E5E7EB] dark:border-[#2F3336] p-6 transition-all duration-300">
+      {/* Service Name and Badge */}
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-xl font-bold text-[#1A1A1A] dark:text-[#E7E9EA] transition-colors duration-300">
+          {service.name}
+        </h3>
+        {isBestValue && (
+          <span className="text-sm font-medium text-yellow-600 dark:text-yellow-400 transition-colors duration-300">
+            {t('results.bestValue')}
+          </span>
+        )}
+      </div>
+
+      {/* Recipient Receives */}
+      <div className="mb-4">
+        <p className="text-sm text-[#4B5563] dark:text-[#9CA3AF] mb-1 transition-colors duration-300">
+          {t('results.recipientReceives')}
+        </p>
+        <p className="text-3xl font-bold text-[#0066FF] dark:text-[#1D9BF0] transition-colors duration-300">
+          {formatCurrency(service.recipientReceives)}
+        </p>
+      </div>
+
+      {/* Fee */}
+      <div className="mb-4">
+        <p className="text-sm text-[#4B5563] dark:text-[#9CA3AF] mb-1 transition-colors duration-300">
+          {t('results.fee')}
+        </p>
+        <p className="text-lg font-semibold text-[#1A1A1A] dark:text-[#E7E9EA] transition-colors duration-300">
+          {formatCurrency(service.fee)} ({service.feePercentage}%)
+        </p>
+      </div>
+
+      {/* Exchange Rate */}
+      <div className="mb-4">
+        <p className="text-sm text-[#4B5563] dark:text-[#9CA3AF] mb-1 transition-colors duration-300">
+          {t('results.rate')}
+        </p>
+        <p className="text-lg font-medium text-[#1A1A1A] dark:text-[#E7E9EA] transition-colors duration-300">
+          1 EUR = {service.exchangeRate.toFixed(2)} EUR
+        </p>
+      </div>
+
+      {/* Transfer Time */}
+      <div className="mb-6">
+        <p className="text-sm text-[#4B5563] dark:text-[#9CA3AF] mb-1 transition-colors duration-300">
+          {t('results.time')}
+        </p>
+        <p className="text-lg font-medium text-[#1A1A1A] dark:text-[#E7E9EA] transition-colors duration-300">
+          {formatTransferTime()}
+        </p>
+      </div>
+
+      {/* CTA Button */}
+      <button
+        onClick={handleClick}
+        aria-label={`${t('results.useService')} ${service.name}`}
+        className="w-full px-6 py-3 text-base font-semibold text-white bg-[#0066FF] dark:bg-[#1D9BF0] hover:bg-[#0052CC] dark:hover:bg-[#1A8CD8] rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0066FF] dark:focus:ring-[#1D9BF0] focus:ring-offset-2"
+      >
+        {t('results.useService')} {service.name} →
+      </button>
+    </article>
+  )
+}

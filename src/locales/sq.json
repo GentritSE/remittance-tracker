@@ -1,0 +1,66 @@
+{
+  "hero": {
+    "title": "Kurse Para Kur Dërgon në Kosovë",
+    "subtitle": "Krahasoni çmimet e Wise, Remitly, Western Union dhe më shumë"
+  },
+  "calculator": {
+    "amount": "Shuma (€)",
+    "amountPlaceholder": "500",
+    "from": "Nga",
+    "to": "Për në",
+    "kosovo": "Kosovë 🇽🇰",
+    "compare": "Krahasoni Çmimet"
+  },
+  "results": {
+    "recipientReceives": "Marrësi merr",
+    "fee": "Tarifa",
+    "rate": "Kursi",
+    "time": "Koha",
+    "days": "ditë",
+    "minutes": "minuta",
+    "useService": "Përdor",
+    "bestValue": "⭐ Vlera më e mirë"
+  },
+  "errors": {
+    "fillFields": "Ju lutem plotësoni të gjitha fushat",
+    "invalidAmount": "Shuma duhet të jetë midis €10-€10,000"
+  },
+  "education": {
+    "whyDifferent": {
+      "title": "Pse çmimet ndryshojnë?",
+      "content": "Çdo shërbim përdor struktura të ndryshme tarifash. Disa kanë tarifa fikse, të tjera përdorin përqindje, ndërsa shumica kombinojnë të dyja. Përveç kësaj, kompani të ndryshme kanë kosto operimi të ndryshme dhe modele biznesi që ndikojnë në çmimet që ofrojnë. Shpejtësia e transferit gjithashtu luan një rol - transferet më të shpejta zakonisht kushtojnë më shumë."
+    },
+    "howToChoose": {
+      "title": "Si zgjedh shërbimin më të mirë?",
+      "points": [
+        {
+          "title": "Shpejtësia vs Kostoja",
+          "content": "Transferet më të shpejta kushtojnë më shumë, por arrijnë brenda minutash"
+        },
+        {
+          "title": "Siguria",
+          "content": "Të gjitha shërbimet e listuara janë të rregulluara dhe të sigurta"
+        },
+        {
+          "title": "Shuma",
+          "content": "Për shuma më të mëdha, tarifat përqindjeje rëndojnë më shumë"
+        },
+        {
+          "title": "Frekuenca",
+          "content": "Nëse dërgoni shpesh, kërkoni shërbime me anëtarësi ose tarifa më të ulëta"
+        }
+      ]
+    }
+  },
+  "exchangeRate": {
+    "title": "Kursi i Këmbimit",
+    "euroToEuro": "1 EUR = 1.00 EUR",
+    "lastUpdated": "Përditësuar më",
+    "updateFrequency": "Kursat përditësohen çdo 15 minuta"
+  },
+  "footer": {
+    "description": "Platforma më e mirë për të krahasuar çmimet e dërgimit të parave në Kosovë.",
+    "disclaimer": "Çmimet janë aproksimative dhe mund të ndryshojnë. Kontrolloni çmimet finale në faqet e shërbimeve përpara se të bëni një transfertë.",
+    "copyright": "© 2024 Remittance Tracker. Të gjitha të drejtat e rezervuara."
+  }
+}
