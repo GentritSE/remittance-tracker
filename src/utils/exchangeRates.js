@@ -53,10 +53,10 @@ export const serviceData = {
 export const lastUpdated = new Date().toISOString()
 
 export const countries = [
-  { code: 'DE', name: { sq: 'Gjermania', en: 'Germany' } },
-  { code: 'CH', name: { sq: 'Zvicra', en: 'Switzerland' } },
-  { code: 'AT', name: { sq: 'Austria', en: 'Austria' } },
-  { code: 'IT', name: { sq: 'Italia', en: 'Italy' } },
-  { code: 'SE', name: { sq: 'Suedia', en: 'Sweden' } },
-  { code: 'GB', name: { sq: 'Mbretëria e Bashkuar', en: 'United Kingdom' } }
+  { code: 'DE', name: { sq: '🇩🇪 Gjermania', en: '🇩🇪 Germany' } },
+  { code: 'CH', name: { sq: '🇨🇭 Zvicra', en: '🇨🇭 Switzerland' } },
+  { code: 'AT', name: { sq: '🇦🇹 Austria', en: '🇦🇹 Austria' } },
+  { code: 'IT', name: { sq: '🇮🇹 Italia', en: '🇮🇹 Italy' } },
+  { code: 'SE', name: { sq: '🇸🇪 Suedia', en: '🇸🇪 Sweden' } },
+  { code: 'GB', name: { sq: '🇬🇧 Mbretëria e Bashkuar', en: '🇬🇧 United Kingdom' } }
 ]
