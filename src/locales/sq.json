@@ -12,6 +12,7 @@
     "compare": "Krahasoni Çmimet"
   },
   "results": {
+    "comparisonTitle": "Rezultatet e Krahasimit",
     "recipientReceives": "Marrësi merr",
     "fee": "Tarifa",
     "rate": "Kursi",
@@ -61,6 +62,6 @@
   "footer": {
     "description": "Platforma më e mirë për të krahasuar çmimet e dërgimit të parave në Kosovë.",
     "disclaimer": "Çmimet janë aproksimative dhe mund të ndryshojnë. Kontrolloni çmimet finale në faqet e shërbimeve përpara se të bëni një transfertë.",
-    "copyright": "© 2024 Remittance Tracker. Të gjitha të drejtat e rezervuara."
+    "copyright": "© {{year}} Remittance Tracker. Të gjitha të drejtat e rezervuara."
   }
 }

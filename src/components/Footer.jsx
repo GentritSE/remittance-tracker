@@ -2,6 +2,7 @@ import { useLanguage } from '../hooks/useLanguage'
 
 export default function Footer() {
   const { t } = useLanguage()
+  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="bg-[#F8F9FA] dark:bg-[#1C1F26] border-t border-[#E5E7EB] dark:border-[#2F3336] transition-colors duration-300">
@@ -31,7 +32,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-[#E5E7EB] dark:border-[#2F3336] text-center transition-colors duration-300">
           <p className="text-sm text-[#4B5563] dark:text-[#9CA3AF] transition-colors duration-300">
-            {t('footer.copyright')}
+            {t('footer.copyright', { year: currentYear })}
           </p>
         </div>
       </div>

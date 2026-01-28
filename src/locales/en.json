@@ -12,6 +12,7 @@
     "compare": "Compare Prices"
   },
   "results": {
+    "comparisonTitle": "Comparison Results",
     "recipientReceives": "Recipient receives",
     "fee": "Fee",
     "rate": "Exchange Rate",
@@ -61,6 +62,6 @@
   "footer": {
     "description": "The best platform to compare money transfer prices to Kosovo.",
     "disclaimer": "Prices are approximate and may vary. Check final prices on service websites before making a transfer.",
-    "copyright": "© 2024 Remittance Tracker. All rights reserved."
+    "copyright": "© {{year}} Remittance Tracker. All rights reserved."
   }
 }

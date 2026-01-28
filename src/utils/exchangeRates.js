@@ -1,3 +1,5 @@
+// NOTE: Replace the placeholder affiliate codes below with actual affiliate links before deployment
+// YOUR_CODE, YOUR_REFERRAL, YOUR_LINK, YOUR_ID, YOUR_CODE need to be replaced with real values
 export const serviceData = {
   wise: {
     id: 'wise',
@@ -46,6 +48,8 @@ export const serviceData = {
   }
 }
 
+// NOTE: In a production app, this should be fetched from an API that provides real-time exchange rates
+// For MVP purposes, this timestamp is generated at build time
 export const lastUpdated = new Date().toISOString()
 
 export const countries = [

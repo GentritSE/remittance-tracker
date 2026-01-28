@@ -27,7 +27,7 @@ export function useLanguage() {
     trackLanguageChanged(newLanguage)
   }
 
-  const t = (key) => {
+  const t = (key, params = {}) => {
     const keys = key.split('.')
     let value = translations[language]
     
@@ -35,7 +35,16 @@ export function useLanguage() {
       value = value?.[k]
     }
     
-    return value || key
+    if (!value) return key
+    
+    // Simple interpolation for {{variable}} patterns
+    if (typeof value === 'string' && Object.keys(params).length > 0) {
+      return value.replace(/\{\{(\w+)\}\}/g, (match, variable) => {
+        return params[variable] !== undefined ? params[variable] : match
+      })
+    }
+    
+    return value
   }
   
   return { language, toggleLanguage, t }
