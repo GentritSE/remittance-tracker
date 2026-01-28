@@ -80,77 +80,93 @@ function App() {
   const savings = results ? calculateSavings() : null
 
   return (
-    <>
-      <p>Impact-Site-Verification: 347affb7-c7dc-49c3-9225-cba330cc770a</p>
-      <div className="min-h-screen bg-white dark:bg-[#0F1419] transition-colors duration-300">
-        <Header />
+    <div className="min-h-screen bg-white dark:bg-[#0F1419] transition-colors duration-300">
+      {/* Impact Site Verification - Hidden but in content */}
+      <div className="sr-only">Impact-Site-Verification: 347affb7-c7dc-49c3-9225-cba330cc770a</div>
+      
+      <Header />
+      
+      <main>
+        <Calculator onCalculate={handleCalculate} isLoading={isLoading} />
         
-        <main>
-          <Calculator onCalculate={handleCalculate} isLoading={isLoading} />
-          
-          {/* Results Section */}
-          {results && (
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1A1A1A] dark:text-[#E7E9EA] mb-4 text-center transition-colors duration-300">
-                {t('results.comparisonTitle')}
-              </h2>
-              
-              {/* Visual Indicator for Default Results */}
-              <p className="text-center text-sm text-[#4B5563] dark:text-[#9CA3AF] mb-6">
-                {t('calculator.showingResults', { 
-                  amount: formatCurrency(results.amount),
-                  country: getCountryName(results.fromCountry)
-                })}
-              </p>
+        {/* Results Section */}
+        {results && (
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1A1A1A] dark:text-[#E7E9EA] mb-4 text-center transition-colors duration-300">
+              {t('results.comparisonTitle')}
+            </h2>
+            
+            {/* Visual Indicator for Default Results */}
+            <p className="text-center text-sm text-[#4B5563] dark:text-[#9CA3AF] mb-6">
+              {t('calculator.showingResults', { 
+                amount: formatCurrency(results.amount),
+                country: getCountryName(results.fromCountry)
+              })}
+            </p>
 
-              {/* Summary Card */}
-              {!isLoading && savings && (
-                <div className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6 animate-fadeIn">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                    <div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {t('summary.sending')}
-                      </div>
-                      <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                        {formatCurrency(results.amount)}
-                      </div>
+            {/* Summary Card */}
+            {!isLoading && savings && (
+              <div className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6 animate-fadeIn">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                  <div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('summary.sending')}
                     </div>
-                    
-                    <div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {t('summary.bestOption')}
-                      </div>
-                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                        {results.services[0].name}
-                      </div>
+                    <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      {formatCurrency(results.amount)}
                     </div>
-                    
-                    <div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {t('summary.youSave')}
-                      </div>
-                      <div className="text-2xl font-bold text-green-600 dark:text-green-400">
-                        {formatCurrency(savings.amount)}
-                      </div>
+                  </div>
+                  
+                  <div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('summary.bestOption')}
+                    </div>
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                      {results.services[0].name}
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('summary.youSave')}
+                    </div>
+                    <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                      {formatCurrency(savings.amount)}
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
+            )}
 
-              {/* Loading Skeleton */}
-              {isLoading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Array.from({ length: Object.keys(serviceData).length }).map((_, i) => (
-                    <div key={i} className="animate-pulse bg-gray-200 dark:bg-gray-800 rounded-xl h-96 transition-colors duration-300" />
+            {/* Loading Skeleton */}
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {Array.from({ length: Object.keys(serviceData).length }).map((_, i) => (
+                  <div key={i} className="animate-pulse bg-gray-200 dark:bg-gray-800 rounded-xl h-96 transition-colors duration-300" />
+                ))}
+              </div>
+            ) : (
+              /* Results Grid - Desktop */
+              <>
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fadeIn">
+                  {results.services.map((service, index) => (
+                    <ComparisonCard
+                      key={service.id}
+                      service={service}
+                      amount={results.amount}
+                      isBestValue={index === 0}
+                      savingsAmount={savings?.amount}
+                      worstServiceName={savings?.worstServiceName}
+                      selectedCurrency={results.selectedCurrency}
+                    />
                   ))}
                 </div>
-              ) : (
-                /* Results Grid - Desktop */
-                <>
-                  <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fadeIn">
-                    {results.services.map((service, index) => (
+
+                {/* Results Swipeable - Mobile */}
+                <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 scrollbar-hide animate-fadeIn">
+                  {results.services.map((service, index) => (
+                    <div key={service.id} className="flex-none w-[85vw] snap-center">
                       <ComparisonCard
-                        key={service.id}
                         service={service}
                         amount={results.amount}
                         isBestValue={index === 0}
@@ -158,49 +174,33 @@ function App() {
                         worstServiceName={savings?.worstServiceName}
                         selectedCurrency={results.selectedCurrency}
                       />
-                    ))}
-                  </div>
+                    </div>
+                  ))}
+                </div>
 
-                  {/* Results Swipeable - Mobile */}
-                  <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 scrollbar-hide animate-fadeIn">
-                    {results.services.map((service, index) => (
-                      <div key={service.id} className="flex-none w-[85vw] snap-center">
-                        <ComparisonCard
-                          service={service}
-                          amount={results.amount}
-                          isBestValue={index === 0}
-                          savingsAmount={savings?.amount}
-                          worstServiceName={savings?.worstServiceName}
-                          selectedCurrency={results.selectedCurrency}
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Pagination Dots for Mobile */}
-                  <div className="flex justify-center gap-2 mt-4 md:hidden">
-                    {results.services.map((_, i) => (
-                      <div 
-                        key={i} 
-                        className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 transition-colors duration-300"
-                        aria-label={`Card ${i + 1} of ${results.services.length}`}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
-            </section>
-          )}
-          
-          {/* Newsletter Signup - Add after results */}
-          {results && <NewsletterSignup />}
-          
-          <EducationalSection />
-        </main>
+                {/* Pagination Dots for Mobile */}
+                <div className="flex justify-center gap-2 mt-4 md:hidden">
+                  {results.services.map((_, i) => (
+                    <div 
+                      key={i} 
+                      className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 transition-colors duration-300"
+                      aria-label={`Card ${i + 1} of ${results.services.length}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </section>
+        )}
         
-        <Footer />
-      </div>
-    </>
+        {/* Newsletter Signup - Add after results */}
+        {results && <NewsletterSignup />}
+        
+        <EducationalSection />
+      </main>
+      
+      <Footer />
+    </div>
   )
 }
 
