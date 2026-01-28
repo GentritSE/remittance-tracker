@@ -80,6 +80,7 @@ function App() {
   const savings = results ? calculateSavings() : null
 
   return (
+    <p>Impact-Site-Verification: 347affb7-c7dc-49c3-9225-cba330cc770a</p>
     <div className="min-h-screen bg-white dark:bg-[#0F1419] transition-colors duration-300">
       <Header />
       
