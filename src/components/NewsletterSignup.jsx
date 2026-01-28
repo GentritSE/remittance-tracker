@@ -9,7 +9,9 @@ export default function NewsletterSignup() {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    if (!email || !email.includes('@')) {
+    // Basic email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!email || !emailPattern.test(email)) {
       setStatus('error')
       return
     }
@@ -17,7 +19,7 @@ export default function NewsletterSignup() {
     setStatus('submitting')
     
     // TODO: Backend integration later (Google Sheets, Mailchimp, etc.)
-    // For now, store in localStorage and show success
+    // For MVP, store in localStorage (note: not secure for production)
     console.log('Newsletter signup:', email)
     localStorage.setItem('newsletter_email', email)
     
@@ -77,8 +79,8 @@ export default function NewsletterSignup() {
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
               >
                 {status === 'submitting' 
-                  ? '...'
-                  : language === 'sq' ? 'Subscribe →' : 'Subscribe →'
+                  ? (language === 'sq' ? 'Duke u regjistruar...' : 'Subscribing...')
+                  : (language === 'sq' ? 'Regjistrohu →' : 'Subscribe →')
                 }
               </button>
             </form>

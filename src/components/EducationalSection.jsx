@@ -50,7 +50,7 @@ export default function EducationalSection() {
         {
           icon: "✓",
           title: "Regjistrohuni për alerts",
-          desc: "Tarifat ndryshojnë. Kompanit shpesh ofrojnë promocione. Regjistrohuni më sipër për të marrur njoftimet më të reja."
+          desc: "Tarifat ndryshojnë. Kompanit shpesh ofrojnë promocione. Regjistrohuni më sipër për të marrë njoftimet më të reja."
         }
       ]
     },

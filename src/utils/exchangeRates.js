@@ -10,14 +10,14 @@ export const currencies = {
   USD: { 
     code: 'USD',
     symbol: '$', 
-    rate: 1.10,  // €1 = $1.10 (hardcoded for MVP)
+    rate: 1.10,  // €1 = $1.10 (hardcoded for MVP - updated Jan 2026)
     name: 'US Dollar', 
     flag: '🇺🇸' 
   },
   CHF: { 
     code: 'CHF',
     symbol: 'Fr.', 
-    rate: 0.95,  // €1 = Fr. 0.95 (hardcoded for MVP)
+    rate: 0.95,  // €1 = Fr. 0.95 (hardcoded for MVP - updated Jan 2026)
     name: 'Swiss Franc', 
     flag: '🇨🇭' 
   }
@@ -29,8 +29,8 @@ export const countryDefaultCurrency = {
   CH: 'CHF',  // Switzerland
   AT: 'EUR',  // Austria
   IT: 'EUR',  // Italy
-  SE: 'EUR',  // Sweden
-  GB: 'EUR'   // UK
+  SE: 'EUR',  // Sweden (uses SEK but EUR default for MVP as SEK not supported yet)
+  GB: 'EUR'   // UK (uses GBP but EUR default for MVP as GBP not supported yet)
 }
 
 // Convert amount between currencies
