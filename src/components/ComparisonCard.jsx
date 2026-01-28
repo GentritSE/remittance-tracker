@@ -1,6 +1,7 @@
 import { useLanguage } from '../hooks/useLanguage'
 import { formatCurrency } from '../utils/calculations'
 import { trackAffiliateLinkClicked } from '../utils/analytics'
+import { currencies, convertCurrency } from '../utils/exchangeRates'
 
 const serviceIcons = {
   wise: '🟢',
@@ -10,8 +11,12 @@ const serviceIcons = {
   ria: '🔴'
 }
 
-export default function ComparisonCard({ service, amount, isBestValue, savingsAmount, worstServiceName }) {
+export default function ComparisonCard({ service, amount, isBestValue, savingsAmount, worstServiceName, selectedCurrency }) {
   const { t } = useLanguage()
+
+  // Calculate conversions for display
+  const amountUSD = convertCurrency(service.recipientReceives, 'EUR', 'USD')
+  const amountCHF = convertCurrency(service.recipientReceives, 'EUR', 'CHF')
 
   const handleClick = () => {
     trackAffiliateLinkClicked(service.name, amount, service.recipientReceives)
@@ -60,6 +65,10 @@ export default function ComparisonCard({ service, amount, isBestValue, savingsAm
         <p className="text-3xl font-bold text-[#0066FF] dark:text-[#1D9BF0] transition-colors duration-300">
           {formatCurrency(service.recipientReceives)}
         </p>
+        {/* Show approximate in other currencies */}
+        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          {t('currency.approximate')} ${amountUSD} USD • Fr. {amountCHF} CHF
+        </div>
       </div>
 
       {/* Fee */}

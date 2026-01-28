@@ -68,6 +68,13 @@
     "bestOption": "Best Option",
     "youSave": "You Save"
   },
+  "currency": {
+    "label": "Currency",
+    "eur": "Euro",
+    "usd": "US Dollar",
+    "chf": "Swiss Franc",
+    "approximate": "≈"
+  },
   "footer": {
     "description": "The best platform to compare money transfer prices to Kosovo.",
     "disclaimer": "Prices are approximate and may vary. Check final prices on service websites before making a transfer.",

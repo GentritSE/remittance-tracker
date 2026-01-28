@@ -1,13 +1,23 @@
 import { useState } from 'react'
 import { useLanguage } from '../hooks/useLanguage'
-import { countries } from '../utils/exchangeRates'
+import { countries, currencies, countryDefaultCurrency, convertCurrency } from '../utils/exchangeRates'
 import { trackCalculatorUsed } from '../utils/analytics'
 
 export default function Calculator({ onCalculate, isLoading }) {
   const { language, t } = useLanguage()
   const [amount, setAmount] = useState('500')
   const [fromCountry, setFromCountry] = useState('DE')
+  const [selectedCurrency, setSelectedCurrency] = useState('EUR')
   const [error, setError] = useState('')
+
+  const handleCountryChange = (e) => {
+    const country = e.target.value
+    setFromCountry(country)
+    
+    // Auto-select currency based on country
+    const defaultCurr = countryDefaultCurrency[country] || 'EUR'
+    setSelectedCurrency(defaultCurr)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,11 +35,14 @@ export default function Calculator({ onCalculate, isLoading }) {
       return
     }
 
+    // Convert input amount to EUR (base currency)
+    const amountInEUR = convertCurrency(numAmount, selectedCurrency, 'EUR')
+
     // Track analytics
-    trackCalculatorUsed(numAmount, fromCountry)
+    trackCalculatorUsed(amountInEUR, fromCountry)
     
-    // Call parent handler
-    onCalculate(numAmount, fromCountry)
+    // Call parent handler with EUR amount and selected currency
+    onCalculate(amountInEUR, fromCountry, selectedCurrency)
   }
 
   return (
@@ -40,7 +53,7 @@ export default function Calculator({ onCalculate, isLoading }) {
         className="bg-[#F8F9FA] dark:bg-[#1C1F26] rounded-2xl shadow-lg p-6 md:p-8 transition-colors duration-300"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {/* Amount Input */}
+          {/* Amount Input with Currency Selector */}
           <div>
             <label 
               htmlFor="amount" 
@@ -48,19 +61,31 @@ export default function Calculator({ onCalculate, isLoading }) {
             >
               {t('calculator.amount')}
             </label>
-            <input
-              id="amount"
-              type="number"
-              min="10"
-              max="10000"
-              step="0.01"
-              placeholder={t('calculator.amountPlaceholder')}
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              aria-describedby="amount-error"
-              aria-invalid={error ? 'true' : 'false'}
-              className="w-full px-4 py-3 text-base md:text-lg bg-white dark:bg-[#0F1419] text-[#1A1A1A] dark:text-[#E7E9EA] border border-[#E5E7EB] dark:border-[#2F3336] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0066FF] dark:focus:ring-[#1D9BF0] transition-all duration-300"
-            />
+            <div className="flex gap-2">
+              <input
+                id="amount"
+                type="number"
+                min="10"
+                max="10000"
+                step="0.01"
+                placeholder={t('calculator.amountPlaceholder')}
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                aria-describedby="amount-error"
+                aria-invalid={error ? 'true' : 'false'}
+                className="flex-1 px-4 py-3 text-base md:text-lg bg-white dark:bg-[#0F1419] text-[#1A1A1A] dark:text-[#E7E9EA] border border-[#E5E7EB] dark:border-[#2F3336] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0066FF] dark:focus:ring-[#1D9BF0] transition-all duration-300"
+              />
+              <select 
+                value={selectedCurrency}
+                onChange={(e) => setSelectedCurrency(e.target.value)}
+                className="px-4 py-3 text-base bg-white dark:bg-[#0F1419] text-[#1A1A1A] dark:text-[#E7E9EA] border border-[#E5E7EB] dark:border-[#2F3336] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0066FF] dark:focus:ring-[#1D9BF0] transition-all duration-300"
+                aria-label={t('currency.label')}
+              >
+                <option value="EUR">{currencies.EUR.flag} EUR</option>
+                <option value="USD">{currencies.USD.flag} USD</option>
+                <option value="CHF">{currencies.CHF.flag} CHF</option>
+              </select>
+            </div>
           </div>
 
           {/* From Country Dropdown */}
@@ -74,7 +99,7 @@ export default function Calculator({ onCalculate, isLoading }) {
             <select
               id="fromCountry"
               value={fromCountry}
-              onChange={(e) => setFromCountry(e.target.value)}
+              onChange={handleCountryChange}
               aria-invalid={error ? 'true' : 'false'}
               className="w-full px-4 py-3 text-base md:text-lg bg-white dark:bg-[#0F1419] text-[#1A1A1A] dark:text-[#E7E9EA] border border-[#E5E7EB] dark:border-[#2F3336] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0066FF] dark:focus:ring-[#1D9BF0] transition-all duration-300"
             >
