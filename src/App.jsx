@@ -81,8 +81,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#0F1419] transition-colors duration-300">
-      {/* Impact Site Verification - Hidden but in content */}
-      <div className="sr-only">Impact-Site-Verification: 347affb7-c7dc-49c3-9225-cba330cc770a</div>
+      {/* Impact Site Verification - Hidden */}
+      <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+        Impact-Site-Verification: 347affb7-c7dc-49c3-9225-cba330cc770a
+      </div>
       
       <Header />
       
