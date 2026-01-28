@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Calculator from './components/Calculator'
 import ComparisonCard from './components/ComparisonCard'
+import NewsletterSignup from './components/NewsletterSignup'
 import EducationalSection from './components/EducationalSection'
 import Footer from './components/Footer'
 import { useLanguage } from './hooks/useLanguage'
@@ -27,15 +28,17 @@ function App() {
   useEffect(() => {
     const defaultAmount = 500
     const defaultCountry = 'DE'
+    const defaultCurrency = 'EUR'
     const sortedServices = sortServicesByValue(serviceData, defaultAmount)
     setResults({
       services: sortedServices,
       amount: defaultAmount,
-      fromCountry: defaultCountry
+      fromCountry: defaultCountry,
+      selectedCurrency: defaultCurrency
     })
   }, [])
 
-  const handleCalculate = (amount, fromCountry) => {
+  const handleCalculate = (amount, fromCountry, selectedCurrency) => {
     setIsLoading(true)
     
     // Simulate loading state for better UX (600ms provides perceived performance without feeling sluggish)
@@ -44,7 +47,8 @@ function App() {
       setResults({
         services: sortedServices,
         amount: amount,
-        fromCountry
+        fromCountry,
+        selectedCurrency
       })
       setIsLoading(false)
     }, 600)
@@ -150,6 +154,7 @@ function App() {
                       isBestValue={index === 0}
                       savingsAmount={savings?.amount}
                       worstServiceName={savings?.worstServiceName}
+                      selectedCurrency={results.selectedCurrency}
                     />
                   ))}
                 </div>
@@ -164,6 +169,7 @@ function App() {
                         isBestValue={index === 0}
                         savingsAmount={savings?.amount}
                         worstServiceName={savings?.worstServiceName}
+                        selectedCurrency={results.selectedCurrency}
                       />
                     </div>
                   ))}
@@ -183,6 +189,9 @@ function App() {
             )}
           </section>
         )}
+        
+        {/* Newsletter Signup - Add after results */}
+        {results && <NewsletterSignup />}
         
         <EducationalSection />
       </main>

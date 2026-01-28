@@ -68,6 +68,13 @@
     "bestOption": "Opsioni Më i Mirë",
     "youSave": "Kursen"
   },
+  "currency": {
+    "label": "Monedha",
+    "eur": "Euro",
+    "usd": "Dollar Amerikan",
+    "chf": "Frangë Zviceran",
+    "approximate": "≈"
+  },
   "footer": {
     "description": "Platforma më e mirë për të krahasuar çmimet e dërgimit të parave në Kosovë.",
     "disclaimer": "Çmimet janë aproksimative dhe mund të ndryshojnë. Kontrolloni çmimet finale në faqet e shërbimeve përpara se të bëni një transfertë.",
