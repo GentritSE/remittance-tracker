@@ -8,8 +8,11 @@
     "amountPlaceholder": "500",
     "from": "Nga",
     "to": "Për në",
-    "kosovo": "Kosovë 🇽🇰",
-    "compare": "Krahasoni Çmimet"
+    "kosovo": "🇽🇰 Kosovë",
+    "compare": "Gjej Opsionin Më të Lirë →",
+    "trustSignals": "✓ Falas • Pa Regjistrim • 30 Sekonda",
+    "calculating": "Duke krahasuar...",
+    "showingResults": "Duke shfaqur rezultatet për {{amount}} nga {{country}}"
   },
   "results": {
     "comparisonTitle": "Rezultatet e Krahasimit",
@@ -20,7 +23,8 @@
     "days": "ditë",
     "minutes": "minuta",
     "useService": "Përdor",
-    "bestValue": "⭐ Vlera më e mirë"
+    "bestValue": "⭐ BEST VALUE",
+    "saveVs": "💰 Kursen {{amount}} vs {{service}}"
   },
   "errors": {
     "fillFields": "Ju lutem plotësoni të gjitha fushat",
@@ -58,6 +62,11 @@
     "euroToEuro": "1 EUR = 1.00 EUR",
     "lastUpdated": "Përditësuar më",
     "updateFrequency": "Kursat përditësohen çdo 15 minuta"
+  },
+  "summary": {
+    "sending": "Duke Dërguar",
+    "bestOption": "Opsioni Më i Mirë",
+    "youSave": "Kursen"
   },
   "footer": {
     "description": "Platforma më e mirë për të krahasuar çmimet e dërgimit të parave në Kosovë.",

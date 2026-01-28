@@ -8,8 +8,11 @@
     "amountPlaceholder": "500",
     "from": "From",
     "to": "To",
-    "kosovo": "Kosovo 🇽🇰",
-    "compare": "Compare Prices"
+    "kosovo": "🇽🇰 Kosovo",
+    "compare": "Find the Cheapest Option →",
+    "trustSignals": "✓ Free • No Registration • 30 Seconds",
+    "calculating": "Comparing...",
+    "showingResults": "Showing results for {{amount}} from {{country}}"
   },
   "results": {
     "comparisonTitle": "Comparison Results",
@@ -20,7 +23,8 @@
     "days": "days",
     "minutes": "minutes",
     "useService": "Use",
-    "bestValue": "⭐ Best Value"
+    "bestValue": "⭐ BEST VALUE",
+    "saveVs": "💰 Save {{amount}} vs {{service}}"
   },
   "errors": {
     "fillFields": "Please fill in all fields",
@@ -58,6 +62,11 @@
     "euroToEuro": "1 EUR = 1.00 EUR",
     "lastUpdated": "Last updated",
     "updateFrequency": "Rates update every 15 minutes"
+  },
+  "summary": {
+    "sending": "Sending",
+    "bestOption": "Best Option",
+    "youSave": "You Save"
   },
   "footer": {
     "description": "The best platform to compare money transfer prices to Kosovo.",

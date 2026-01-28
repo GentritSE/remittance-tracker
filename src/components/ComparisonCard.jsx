@@ -2,7 +2,15 @@ import { useLanguage } from '../hooks/useLanguage'
 import { formatCurrency } from '../utils/calculations'
 import { trackAffiliateLinkClicked } from '../utils/analytics'
 
-export default function ComparisonCard({ service, amount, isBestValue }) {
+const serviceIcons = {
+  wise: '🟢',
+  remitly: '🔵',
+  westernunion: '🟡',
+  xoom: '🟣',
+  ria: '🔴'
+}
+
+export default function ComparisonCard({ service, amount, isBestValue, savingsAmount, worstServiceName }) {
   const { t } = useLanguage()
 
   const handleClick = () => {
@@ -19,18 +27,30 @@ export default function ComparisonCard({ service, amount, isBestValue }) {
   }
 
   return (
-    <article className="bg-[#F8F9FA] dark:bg-[#1C1F26] rounded-xl shadow-md hover:shadow-lg border border-[#E5E7EB] dark:border-[#2F3336] p-6 transition-all duration-300">
-      {/* Service Name and Badge */}
-      <div className="flex items-center justify-between mb-4">
+    <article className="bg-[#F8F9FA] dark:bg-[#1C1F26] rounded-xl shadow-md hover:shadow-lg border border-[#E5E7EB] dark:border-[#2F3336] p-6 transition-all duration-300 relative">
+      {/* Best Value Badge */}
+      {isBestValue && (
+        <div className="absolute top-0 right-0 bg-green-500 text-white px-3 py-1 rounded-bl-lg rounded-tr-lg text-sm font-bold">
+          {t('results.bestValue')}
+        </div>
+      )}
+
+      {/* Service Icon and Name */}
+      <div className="flex items-center mb-4 mt-2">
+        <span className="text-3xl mr-3" aria-hidden="true">
+          {serviceIcons[service.id] || '⚪'}
+        </span>
         <h3 className="text-xl font-bold text-[#1A1A1A] dark:text-[#E7E9EA] transition-colors duration-300">
           {service.name}
         </h3>
-        {isBestValue && (
-          <span className="text-sm font-medium text-yellow-600 dark:text-yellow-400 transition-colors duration-300">
-            {t('results.bestValue')}
-          </span>
-        )}
       </div>
+
+      {/* Savings Amount (for best value) */}
+      {isBestValue && savingsAmount && parseFloat(savingsAmount) > 0 && (
+        <div className="text-green-600 dark:text-green-400 font-semibold text-sm mb-4">
+          {t('results.saveVs', { amount: formatCurrency(savingsAmount), service: worstServiceName })}
+        </div>
+      )}
 
       {/* Recipient Receives */}
       <div className="mb-4">
