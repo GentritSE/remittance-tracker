@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "title": "Save Money Sending to Kosovo",
+    "subtitle": "Compare prices from Wise, Remitly, Western Union and more"
+  },
+  "calculator": {
+    "amount": "Amount (€)",
+    "amountPlaceholder": "500",
+    "from": "From",
+    "to": "To",
+    "kosovo": "Kosovo 🇽🇰",
+    "compare": "Compare Prices"
+  },
+  "results": {
+    "comparisonTitle": "Comparison Results",
+    "recipientReceives": "Recipient receives",
+    "fee": "Fee",
+    "rate": "Exchange Rate",
+    "time": "Time",
+    "days": "days",
+    "minutes": "minutes",
+    "useService": "Use",
+    "bestValue": "⭐ Best Value"
+  },
+  "errors": {
+    "fillFields": "Please fill in all fields",
+    "invalidAmount": "Amount must be between €10-€10,000"
+  },
+  "education": {
+    "whyDifferent": {
+      "title": "Why do prices differ?",
+      "content": "Each service uses different fee structures. Some charge flat fees, others use percentages, while most combine both. Additionally, different companies have varying operational costs and business models that affect their pricing. Transfer speed also plays a role - faster transfers typically cost more."
+    },
+    "howToChoose": {
+      "title": "How to choose the best service?",
+      "points": [
+        {
+          "title": "Speed vs Cost",
+          "content": "Faster transfers cost more but arrive within minutes"
+        },
+        {
+          "title": "Safety",
+          "content": "All listed services are regulated and secure"
+        },
+        {
+          "title": "Amount",
+          "content": "For larger amounts, percentage fees matter more"
+        },
+        {
+          "title": "Frequency",
+          "content": "If you send often, look for membership services or lower fees"
+        }
+      ]
+    }
+  },
+  "exchangeRate": {
+    "title": "Exchange Rate",
+    "euroToEuro": "1 EUR = 1.00 EUR",
+    "lastUpdated": "Last updated",
+    "updateFrequency": "Rates update every 15 minutes"
+  },
+  "footer": {
+    "description": "The best platform to compare money transfer prices to Kosovo.",
+    "disclaimer": "Prices are approximate and may vary. Check final prices on service websites before making a transfer.",
+    "copyright": "© {{year}} Remittance Tracker. All rights reserved."
+  }
+}
